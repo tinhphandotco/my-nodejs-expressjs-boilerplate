@@ -8,7 +8,7 @@
     "prod:local": "NODE_ENV=production node server.js",
     "prod:start": "NODE_ENV=production pm2 start nodejs-temp-mvc",
     "prod:stop": "pm2 stop nodejs-temp-mvc",
-    "db:migrate": "node ./database/migrations/index.js",
+    "db:migrate": "yarn db:backup && node ./database/migrations/index.js",
     "db:backup": "node ./database/backups/backup.js",
     "db:restore": "node ./database/backups/restore.js",
     "test": ""
