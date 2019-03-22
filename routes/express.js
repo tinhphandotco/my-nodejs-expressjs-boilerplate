@@ -1,6 +1,6 @@
+const path = require('path')
 const express = require('express')
 const expressEjsExtend = require('express-ejs-extend')
-const path = require('path')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -8,8 +8,14 @@ const config = require('@root/config/index')
 
 // midleware
 const {
-    webNotFound
+    webNotFound,
+    checkApiVersion
 } = require('@root/app/middleware')
+
+// routes
+const {
+    apiRoute
+} = require('@root/routes/index')
 
 module.exports = (app, io) => {
     app.use(cors(config.CORS))
@@ -36,6 +42,8 @@ module.exports = (app, io) => {
     // modify response
 
     // local variables
+
+    app.use('/api/:api_version', checkApiVersion, apiRoute)
 
     app.use(webNotFound)
 
