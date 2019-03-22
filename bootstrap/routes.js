@@ -1,6 +1,5 @@
-module.exports = (app) => new Promise((resolve, reject) => {
-    console.log('Boostrap routes')
-    setTimeout(() => {
-        resolve()
-    }, 1000)
-})
+// const config = require('@root/config/index')
+
+module.exports = (app) => Promise.resolve(
+    require('@root/routes/express')(app)
+)

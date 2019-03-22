@@ -36,7 +36,7 @@ const connectSocket = () => new Promise((resolve, reject) => {
 
 const listen = (port) => new Promise((resolve, reject) => {
     http.listen(port, () => {
-        console.log(`<${config.APP.NAME}> app is listening on port: ${port}`)
+        console.log(`<${config.APP.NAME}> app is listening on: http://localhost:${port}`)
         resolve()
     })
 })
