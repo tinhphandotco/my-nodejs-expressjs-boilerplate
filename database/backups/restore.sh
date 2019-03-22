@@ -1,0 +1,1 @@
+sudo mongorestore --db $1 --drop $2

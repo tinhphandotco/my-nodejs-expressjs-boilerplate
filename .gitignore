@@ -3,6 +3,9 @@ node_modules
 # uploads
 /storage/uploads
 
+# db-backups
+/database/backups/db-backups
+
 # logs
 yarn-error.log
 /storage/logs

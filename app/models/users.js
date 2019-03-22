@@ -1,9 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
-const config = require('@root/config/index')
 
 const Schema = mongoose.Schema
-
 const ROLES = ['ADMIN', 'MOD', 'USER']
 const STATUS = ['blocked', 'actived', 'pending']
 
