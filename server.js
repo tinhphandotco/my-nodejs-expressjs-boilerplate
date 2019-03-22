@@ -16,6 +16,7 @@ const app = require('express')()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const config = require('@root/config/index')
+const { composePromise } = require('@root/utils/common')
 
 const { bootstrapModels, bootstrapRoutes } = require('@root/bootstrap/index')
 const socket = require('@root/app/socket/index')
@@ -33,27 +34,20 @@ const connectSocket = () => new Promise((resolve, reject) => {
     resolve()
 })
 
-const bootstrapApp = () => new Promise((resolve, reject) => {
-    bootstrapModels()
-    bootstrapRoutes(app)
-    resolve()
-})
-
-const listen = (port = config.APP.PORT) => new Promise((resolve, reject) => {
+const listen = (port) => new Promise((resolve, reject) => {
     http.listen(port, () => {
         console.log(`<${config.APP.NAME}> app is listening on port: ${port}`)
         resolve()
     })
 })
 
-Promise.all([
-    connectDatabase(),
-    bootstrapApp(),
-    connectSocket(),
-    listen(config.APP.PORT)
-])
-    .then(() => {
-    })
+composePromise(
+    _ => listen(config.APP.PORT),
+    _ => connectSocket(),
+    _ => bootstrapRoutes(app),
+    _ => bootstrapModels(config),
+    _ => connectDatabase()
+)()
     .catch(err => {
         console.log(err.message)
     })
