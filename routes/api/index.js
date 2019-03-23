@@ -1,10 +1,9 @@
 const router = require('express').Router()
 const oauthRoute = require('./oauth')
+const testRoute = require('./test')
 
 router.use('/oauth', oauthRoute)
 
-router.get('/', (req, res) => {
-    res.sendData({ message: 'This is first api endpoint' })
-})
+router.use('/test', testRoute)
 
 module.exports = router
