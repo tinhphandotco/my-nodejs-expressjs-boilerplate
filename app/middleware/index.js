@@ -1,4 +1,5 @@
 module.exports = {
     webNotFound: require('./webNotFound'),
-    checkApiVersion: require('./checkApiVersion')
+    checkApiVersion: require('./checkApiVersion'),
+    customApiResponse: require('./customApiResponse')
 }

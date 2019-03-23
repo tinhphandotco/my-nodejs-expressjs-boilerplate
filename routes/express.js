@@ -9,7 +9,8 @@ const config = require('@root/config/index')
 // midleware
 const {
     webNotFound,
-    checkApiVersion
+    checkApiVersion,
+    customApiResponse
 } = require('@root/app/middleware')
 
 // routes
@@ -39,11 +40,10 @@ module.exports = (app, io) => {
     app.use(bodyParser.json({ limit: '10mb', extended: true }))
     app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 
-    // modify response
-
     // local variables
 
-    app.use('/api/:api_version', checkApiVersion, apiRoute)
+    // Api route
+    app.use('/api/:api_version', checkApiVersion, customApiResponse, apiRoute)
 
     app.use(webNotFound)
 

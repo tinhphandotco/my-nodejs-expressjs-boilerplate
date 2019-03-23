@@ -1,6 +1,6 @@
 module.exports = {
     'origin': '*',
-    'methods': 'GET,PUT,POST,DELETE',
+    'methods': 'GET,PUT,PATCH,POST,DELETE',
     'preflightContinue': false,
-    'optionsSuccessStatus': 204
+    'optionsSuccessStatus': 200
 }
