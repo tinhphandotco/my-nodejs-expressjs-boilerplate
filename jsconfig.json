@@ -7,6 +7,18 @@
             "@root/*": [
                 "./*"
             ],
+            "@controllers/*": [
+                "./app/controllers/*"
+            ],
+            "@models/*": [
+                "./app/models/*"
+            ],
+            "@services/*": [
+                "./app/services/*"
+            ],
+            "@middleware/*": [
+                "./app/middleware/*"
+            ]
         }
     },
     "exclude": [

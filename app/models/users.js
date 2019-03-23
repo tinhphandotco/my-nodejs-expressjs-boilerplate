@@ -33,7 +33,7 @@ const UserSchema = new Schema({
  * Method
  */
 UserSchema.methods.checkPassword = function (password) {
-    return bcrypt.compareSync(password, this.password)
+    return bcrypt.compareSync(password || '', this.password)
 }
 
 module.exports = mongoose.model('User', UserSchema)

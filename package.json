@@ -23,14 +23,21 @@
     "express-ejs-extend": "^0.0.1",
     "express-session": "^1.15.6",
     "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.19",
+    "rand-token": "^0.4.0",
     "shelljs": "^0.8.3",
     "socket.io": "^2.2.0"
   },
   "_moduleAliases": {
-    "@root": "."
+    "@root": ".",
+    "@controllers": "./app/controllers",
+    "@models": "./app/models",
+    "@services": "./app/services",
+    "@middleware": "./app/middleware"
+
   },
   "devDependencies": {
     "eslint": "^5.15.3",

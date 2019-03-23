@@ -51,3 +51,7 @@ composePromise(
     .catch(err => {
         console.log(err.message)
     })
+
+process.on('unhandledRejection', err => {
+    console.error('Uncaught Error', err && err.message)
+})

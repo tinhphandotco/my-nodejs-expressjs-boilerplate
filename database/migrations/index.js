@@ -2,19 +2,22 @@
 
 require('module-alias/register')
 
+const fs = require('fs')
 const path = require('path')
 const mongoose = require('mongoose')
 const config = require('@root/config/index')
 const { composePromise } = require('@root/utils/common')
 const { bootstrapModels } = require('@root/bootstrap/index')
 
-const getDataSeed = model => require(
-    path.resolve(
+const getDataSeed = model => {
+    const pathSeed = path.resolve(
         config.PATH.ROOT,
         'database/seeds',
         model.collection.collectionName
     )
-) || []
+
+    return fs.existsSync(pathSeed + '.js') ? require(pathSeed) : []
+}
 
 const connectDatabase = (url = config.DATABASE.DATABASE_URL) => new Promise((resolve, reject) => {
     mongoose.set('useCreateIndex', true)
