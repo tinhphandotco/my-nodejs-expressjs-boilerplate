@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "cron": "^1.7.0",
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
     "express": "4.15.2",
@@ -37,7 +38,6 @@
     "@models": "./app/models",
     "@services": "./app/services",
     "@middleware": "./app/middleware"
-
   },
   "devDependencies": {
     "eslint": "^5.15.3",

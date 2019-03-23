@@ -9,7 +9,7 @@ const shell = require('shelljs')
 
 const run = async () => {
     try {
-        let time = moment().format('DD-MM-YY-hh:mm')
+        let time = moment().format('DD-MM-YY-HH:MM')
         let filename = DATABASE.DATABASE_NAME + '_' + time
         await shell.exec(
             `bash ${PATH.ROOT}/database/backups/backup.sh ${DATABASE.DATABASE_NAME} ${time} ${filename}`

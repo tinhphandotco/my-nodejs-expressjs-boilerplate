@@ -7,7 +7,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const config = require('@root/config/index')
 const { composePromise } = require('@root/utils/common')
-const { bootstrapModels } = require('@root/bootstrap/index')
+const { models: bootstrapModels } = require('@root/bootstrap/index')
 
 const getDataSeed = model => {
     const pathSeed = path.resolve(

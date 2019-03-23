@@ -17,8 +17,14 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const config = require('@root/config/index')
 const { composePromise } = require('@root/utils/common')
+const cronJobs = require('@root/app/cronjobs/index')
 
-const { bootstrapModels, bootstrapRoutes } = require('@root/bootstrap/index')
+const {
+    models: bootstrapModels,
+    routes: bootstrapRoutes,
+    cronJobs: bootstrapCronJobs
+} = require('@root/bootstrap/index')
+
 const socket = require('@root/app/socket/index')
 
 const connectDatabase = (url = config.DATABASE.DATABASE_URL) => new Promise((resolve, reject) => {
@@ -29,8 +35,8 @@ const connectDatabase = (url = config.DATABASE.DATABASE_URL) => new Promise((res
     db.once('open', resolve)
 })
 
-const connectSocket = () => new Promise((resolve, reject) => {
-    socket(io)
+const connectSocket = (extra) => new Promise((resolve, reject) => {
+    socket(io, extra)
     resolve()
 })
 
@@ -43,7 +49,8 @@ const listen = (port) => new Promise((resolve, reject) => {
 
 composePromise(
     _ => listen(config.APP.PORT),
-    _ => connectSocket(),
+    cronJobs => connectSocket({ cronJobs }),
+    _ => bootstrapCronJobs(cronJobs),
     _ => bootstrapRoutes(app),
     _ => bootstrapModels(config),
     _ => connectDatabase()
