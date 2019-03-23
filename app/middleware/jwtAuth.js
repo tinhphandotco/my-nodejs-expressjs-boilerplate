@@ -1,8 +1,11 @@
 const { pareJwtToken } = require('@root/utils/jwt')
 const usersService = require('@services/users')
 const { JWT } = require('@root/config/index')
+const { REQUEST_STATUSES } = require('@root/constants/index')
 
 module.exports = (pareJwtTokenOptions) => (req, res, next) => {
+    const errors = [{ description: 'Unauthorized user!' }]
+    const { UNAUTHORIZED } = REQUEST_STATUSES
     if (req.headers &&
         req.headers.authorization &&
         req.headers.authorization.split(' ')[0] === JWT.JWT_TOKEN_PREFIX) {
@@ -16,15 +19,15 @@ module.exports = (pareJwtTokenOptions) => (req, res, next) => {
                         next()
                     })
                     .catch(_ => {
-                        res.sendError({ description: 'Unauthorized user!' }, 401)
+                        res.sendError(errors, UNAUTHORIZED)
                     })
             } else {
-                res.sendError({ description: 'Unauthorized user!' }, 401)
+                res.sendError(errors, UNAUTHORIZED)
             }
         } catch (_) {
-            res.sendError({ description: 'Unauthorized user!' }, 401)
+            res.sendError(errors, UNAUTHORIZED)
         }
     } else {
-        res.sendError({ description: 'Unauthorized user!' }, 401)
+        res.sendError(errors, UNAUTHORIZED)
     }
 }

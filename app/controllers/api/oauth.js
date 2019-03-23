@@ -1,4 +1,5 @@
 const User = require('@models/users')
+const { REQUEST_STATUSES } = require('@root/constants/index')
 
 // services
 const { tokens: tokensService } = require('@services/index')
@@ -7,6 +8,9 @@ const { jwtToken, randRefreshToken, pareJwtToken } = require('@root/utils/jwt')
 
 module.exports = {
     login: (req, res) => {
+        const errors = [{ description: 'Email or password incorrect' }]
+        const { FORBIDDEND } = REQUEST_STATUSES
+
         const { email, password } = req.body
         User.findOne({ email })
             .then(user => {
@@ -22,16 +26,17 @@ module.exports = {
                             userId: user._id
                         })
                     })
-                } else throw new Error('Email or password incorrect')
+                } else throw new Error()
             })
             .catch(() => {
-                res.sendError({
-                    description: 'Email or password incorrect'
-                }, 401)
+                res.sendError(errors, FORBIDDEND)
             })
     },
 
     getAccessToken: (req, res) => {
+        const errors = [{ description: 'Can not get access token' }]
+        const { LOW_AUTHORIZED } = REQUEST_STATUSES
+
         const { refreshToken } = req.body
         const { _id: userId } = req.userAuth
 
@@ -47,6 +52,8 @@ module.exports = {
                     })
                 })
             })
-            .catch(err => res.sendError({ description: err ? err.message : 'get accessToken failed' }, 401))
+            .catch(err => res.sendError(
+                err ? [{ description: err.message }] : errors, LOW_AUTHORIZED)
+            )
     }
 }

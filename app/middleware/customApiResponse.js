@@ -1,19 +1,21 @@
+const { REQUEST_STATUSES } = require('@root/constants/index')
+
 module.exports = (req, res, next) => {
-    res.sendError = (errors = {}, status = 400, description = '', errorKeyCode = 'COMMON_ERROR') => {
-        res.status(status).json({
+    res.sendError = (errors = [], requestStatus = REQUEST_STATUSES.BAD_REQUEST) => {
+        res.status(requestStatus.code).json({
             'error': {
-                status,
-                errorKeyCode,
-                description,
-                ...errors
+                status: requestStatus.code,
+                description: requestStatus.description,
+                details: errors || []
             }
         })
     }
 
-    res.sendData = (data = null, status = 200) => {
-        res.status(status).json({
-            status,
-            data
+    res.sendData = (data = null, requestStatus = REQUEST_STATUSES.OK) => {
+        res.status(requestStatus.code).json({
+            status: requestStatus.code,
+            description: requestStatus.description,
+            data: data
         })
     }
 
