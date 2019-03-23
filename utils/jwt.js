@@ -9,8 +9,8 @@ const jwtToken = (data = {}) => {
     return jwt.sign(data, JWT.JWT_ENCRYPTION, { expiresIn: JWT.JWT_EXPIRATION })
 }
 
-const pareJwtToken = (token) => {
-    return jwt.verify(token, JWT.JWT_ENCRYPTION)
+const pareJwtToken = (token, options = {}) => {
+    return jwt.verify(token, JWT.JWT_ENCRYPTION, { ...options })
 }
 
 module.exports = {

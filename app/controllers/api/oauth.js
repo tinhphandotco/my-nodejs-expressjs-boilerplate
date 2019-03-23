@@ -15,9 +15,10 @@ module.exports = {
                         userId: user._id
                     })
                     const userDecoded = pareJwtToken(accessToken)
-                    return tokensService.saveRefreshToken(randRefreshToken(), userDecoded).then(_ => {
+                    return tokensService.saveRefreshToken(randRefreshToken(), userDecoded).then(token => {
                         res.sendData({
                             accessToken,
+                            refreshToken: token.refreshToken,
                             userId: user._id
                         })
                     })
@@ -28,5 +29,24 @@ module.exports = {
                     description: 'Email or password incorrect'
                 }, 401)
             })
+    },
+
+    getAccessToken: (req, res) => {
+        const { refreshToken } = req.body
+        const { _id: userId } = req.userAuth
+
+        tokensService.getRefreshToken({ userId, refreshToken })
+            .then(_ => {
+                const newAccessToken = jwtToken({ userId })
+                const userDecoded = pareJwtToken(newAccessToken)
+                return tokensService.saveRefreshToken(randRefreshToken(), userDecoded).then(token => {
+                    res.sendData({
+                        accessToken: newAccessToken,
+                        refreshToken: token.refreshToken,
+                        userId: userId
+                    })
+                })
+            })
+            .catch(err => res.sendError({ description: err ? err.message : 'get accessToken failed' }, 401))
     }
 }

@@ -1,3 +1,4 @@
 module.exports = {
-    tokens: require('./tokens')
+    tokens: require('./tokens'),
+    users: require('./users')
 }
