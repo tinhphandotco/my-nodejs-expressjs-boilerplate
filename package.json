@@ -11,6 +11,7 @@
     "db:migrate": "yarn db:backup && node ./database/migrations/index.js",
     "db:backup": "node ./database/backups/backup.js",
     "db:restore": "node ./database/backups/restore.js",
+    "pre:commit": "bash ./scripts/pre-commit.sh",
     "test": ""
   },
   "dependencies": {
