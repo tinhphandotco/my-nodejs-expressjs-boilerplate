@@ -3,5 +3,6 @@ module.exports = {
     checkApiVersion: require('./checkApiVersion'),
     customApiResponse: require('./customApiResponse'),
     jwtAuth: require('./jwtAuth'),
-    uploadFiles: require('./uploadFiles')
+    uploadFiles: require('./uploadFiles'),
+    globalVariables: require('./globalVariables')
 }

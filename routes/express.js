@@ -12,7 +12,8 @@ const root = process.cwd()
 const {
     webNotFound,
     checkApiVersion,
-    customApiResponse
+    customApiResponse,
+    globalVariables
 } = require('@root/app/middleware')
 
 // routes
@@ -53,7 +54,9 @@ module.exports = (app, io) => {
     app.use(bodyParser.json({ limit: '10mb', extended: true }))
     app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 
-    // local variables
+    // global variables
+
+    app.use(globalVariables)
 
     // Api route
     app.use('/api/:api_version', checkApiVersion, customApiResponse, apiRoute)
