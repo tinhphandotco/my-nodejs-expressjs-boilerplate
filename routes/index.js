@@ -1,3 +1,5 @@
 module.exports = {
-    apiRoute: require('./api')
+    apiRoute: require('./api'),
+    webRoute: require('./web'),
+    adminRoute: require('./admin')
 }

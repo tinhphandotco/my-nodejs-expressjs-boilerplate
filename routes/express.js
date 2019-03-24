@@ -5,6 +5,8 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const config = require('@root/config/index')
+const compileSass = require('express-compile-sass')
+const root = process.cwd()
 
 // midleware
 const {
@@ -15,7 +17,9 @@ const {
 
 // routes
 const {
-    apiRoute
+    apiRoute,
+    adminRoute,
+    webRoute
 } = require('@root/routes/index')
 
 module.exports = (app, io) => {
@@ -27,6 +31,15 @@ module.exports = (app, io) => {
     app.set('views',
         path.resolve(config.PATH.ROOT, 'app/views')
     )
+
+    // Complie sacss
+    app.use(compileSass({
+        root: root,
+        sourceMap: true, // Includes Base64 encoded source maps in output css
+        sourceComments: true, // Includes source comments in output css
+        watchFiles: true, // Watches sass files and updates mtime on main files for each change
+        logToConsole: false // If true, will log to console.error on errors
+    }))
 
     // Static
     app.use('/public', express.static(path.resolve(config.PATH.ROOT, 'public')))
@@ -44,6 +57,12 @@ module.exports = (app, io) => {
 
     // Api route
     app.use('/api/:api_version', checkApiVersion, customApiResponse, apiRoute)
+
+    // Admin route
+    app.use(config.PATH.ADMIN_PREFIX, adminRoute)
+
+    // Web route
+    app.use('/', webRoute)
 
     app.use(webNotFound)
 

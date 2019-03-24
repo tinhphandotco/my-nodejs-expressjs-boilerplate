@@ -4,7 +4,7 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_PATH=./ NODE_ENV=development nodemon server.js",
+    "start": "NODE_ENV=development nodemon server.js",
     "prod:local": "NODE_ENV=production node server.js",
     "prod:start": "NODE_ENV=production pm2 start nodejs-temp-mvc",
     "prod:stop": "pm2 stop nodejs-temp-mvc",
@@ -21,6 +21,7 @@
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
     "express": "4.15.2",
+    "express-compile-sass": "^4.0.0",
     "express-ejs-extend": "^0.0.1",
     "express-session": "^1.15.6",
     "joi": "^14.3.1",
