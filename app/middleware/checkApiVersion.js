@@ -3,5 +3,5 @@ module.exports = (req, res, next) => {
         res.status(404).json({
             message: 'Bad request'
         })
-    } else next()
+    } else next();
 }
