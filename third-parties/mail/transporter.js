@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer')
-const { MAIL } = require('@root/config/index')
+const { MAIL } = require('@config/index')
 const { FORGOT_PASSWORD } = require('./types')
 const { geForgotPasswordOption } = require('./options')
 

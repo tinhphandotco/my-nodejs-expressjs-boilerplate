@@ -4,7 +4,7 @@ const expressEjsExtend = require('express-ejs-extend')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const config = require('@root/config/index')
+const config = require('@config/index')
 const compileSass = require('express-compile-sass')
 const root = process.cwd()
 
@@ -12,16 +12,15 @@ const root = process.cwd()
 const {
     webNotFound,
     checkApiVersion,
-    customApiResponse,
     globalVariables
-} = require('@root/app/middleware')
+} = require('@middleware/index')
 
 // routes
 const {
     apiRoute,
     adminRoute,
     webRoute
-} = require('@root/routes/index')
+} = require('@routes/index')
 
 module.exports = (app, io) => {
     app.use(cors(config.CORS))
@@ -59,7 +58,7 @@ module.exports = (app, io) => {
     app.use(globalVariables)
 
     // Api route
-    app.use('/api/:api_version', checkApiVersion, customApiResponse, apiRoute)
+    app.use('/api/:api_version', checkApiVersion, apiRoute)
 
     // Admin route
     app.use(config.PATH.ADMIN_PREFIX, adminRoute)

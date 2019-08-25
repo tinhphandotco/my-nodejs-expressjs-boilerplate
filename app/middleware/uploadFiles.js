@@ -1,6 +1,6 @@
 const multer = require('multer')
 const path = require('path')
-const PATH = require('@root/config/path')
+const PATH = require('@config/path')
 
 // SET STORAGE
 var storage = multer.diskStorage({

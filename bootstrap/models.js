@@ -1,6 +1,6 @@
 const path = require('path')
-const modelNameList = require('@root/app/models/index')
-const config = require('@root/config/index')
+const modelNameList = require('@models/index')
+const config = require('@config/index')
 
 module.exports = (options) => new Promise((resolve, reject) => {
     const models = modelNameList.map(

@@ -1,21 +1,20 @@
 'use strict'
 
 require('module-alias/register')
-require('dotenv').config('@root/.env')
+require('dotenv').config('@.env')
 
-const { DATABASE, PATH } = require('@root/config/index')
+const { DATABASE, PATH } = require('@config/index')
 const moment = require('moment')
 const shell = require('shelljs')
 
 const run = async () => {
     try {
-        let time = moment().format('DD-MM-YY-HH:MM')
+        let time = moment().format('DD-MM-YY-HH:mm')
         let filename = DATABASE.DATABASE_NAME + '_' + time
         await shell.exec(
-            `bash ${PATH.ROOT}/database/backups/backup.sh ${DATABASE.DATABASE_NAME} ${time} ${filename}`
+            `bash ${PATH.ROOT}/database/backups/backup.sh ${DATABASE.DATABASE_URL} ${filename}`
         )
-    } catch (er) {
-        console.log(er.message)
+    } catch (err) {
     }
 }
 

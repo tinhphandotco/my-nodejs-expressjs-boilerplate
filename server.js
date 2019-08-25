@@ -15,17 +15,17 @@ const mongoose = require('mongoose')
 const app = require('express')()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
-const config = require('@root/config/index')
-const { composePromise } = require('@root/utils/common')
-const cronJobs = require('@root/app/cronjobs/index')
+const config = require('@config/index')
+const { composePromise } = require('@utils/common')
+const cronJobs = require('@cronjobs/index')
 
 const {
     models: bootstrapModels,
     routes: bootstrapRoutes,
     cronJobs: bootstrapCronJobs
-} = require('@root/bootstrap/index')
+} = require('@bootstrap/index')
 
-const socket = require('@root/app/socket/index')
+const socket = require('@socket/index')
 
 const connectDatabase = (url = config.DATABASE.DATABASE_URL) => new Promise((resolve, reject) => {
     mongoose.set('useCreateIndex', true)

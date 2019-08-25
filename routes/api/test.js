@@ -4,12 +4,17 @@ const router = require('express').Router()
 
 // middleware
 const { uploadFiles } = require('@middleware/index')
-const { transporter, TYPES: MAIL_TYPES } = require('@root/third-parties/mail/index')
+const { transporter, TYPES: MAIL_TYPES } = require('@third-parties/mail/index')
+
+// utils
+const { sendData } = require('@utils/responses')
 
 router.post('/upload', uploadFiles.fields([
     { name: 'photos', maxCount: 5 }
 ]), (req, res) => {
-    res.sendData(req.files)
+    sendData(res, {
+        data: req.files
+    })
 })
 
 router.get('/send-mail', (req, res) => {

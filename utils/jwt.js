@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const uid = require('rand-token').uid
 
-const { JWT } = require('@root/config/index')
+const { JWT } = require('@config/index')
 
 const randRefreshToken = (len = 45) => uid(len)
 

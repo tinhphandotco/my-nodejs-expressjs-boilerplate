@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const config = require('@root/config/index')
+const config = require('@config/index')
 
 const dfPass = bcrypt.hashSync('123123', config.AUTH.HASH_PASSWORD)
 

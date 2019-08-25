@@ -1,3 +1,5 @@
-module.exports = (req, res, next) => {
-    res.render('errors/404')
+const { render } = require('@utils/responses')
+
+module.exports = (req, res) => {
+    render(res, { view: 'errors/404' })
 }

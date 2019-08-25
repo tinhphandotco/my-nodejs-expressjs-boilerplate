@@ -1,4 +1,4 @@
-const { ENV } = require('@root/config/index')
+const { ENV } = require('@config/index')
 module.exports = (cronJobs) => new Promise((resolve, reject) => {
     try {
         if (ENV.NODE_ENV === 'production') {

@@ -4,20 +4,44 @@
         "allowSyntheticDefaultImports": false,
         "baseUrl": "./",
         "paths": {
-            "@root/*": [
-                "./*"
+            "@bootstrap": [
+                "./bootstrap/*"
             ],
-            "@controllers/*": [
+            "@controllers": [
                 "./app/controllers/*"
             ],
-            "@models/*": [
+            "@cronjobs": [
+                "./app/cronjobs/*"
+            ],
+            "@middleware": [
+                "./app/middleware/*"
+            ],
+            "@models": [
                 "./app/models/*"
             ],
-            "@services/*": [
+            "@services": [
                 "./app/services/*"
             ],
-            "@middleware/*": [
-                "./app/middleware/*"
+            "@socket": [
+                "./app/socket/*"
+            ],
+            "@config": [
+                "./config/*"
+            ],
+            "@constants": [
+                "./constants/*"
+            ],
+            "@database": [
+                "./database/*"
+            ],
+            "@routes": [
+                "./routes/*"
+            ],
+            "@third-parties": [
+                "./third-parties/*"
+            ],
+            "@utils": [
+                "./utils/*"
             ]
         }
     },

@@ -1,4 +1,4 @@
-require('dotenv').config('@root/.env')
+require('dotenv').config('@.env')
 
 module.exports = {
     APP: require('./app'),

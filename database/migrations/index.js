@@ -5,9 +5,11 @@ require('module-alias/register')
 const fs = require('fs')
 const path = require('path')
 const mongoose = require('mongoose')
-const config = require('@root/config/index')
-const { composePromise } = require('@root/utils/common')
-const { models: bootstrapModels } = require('@root/bootstrap/index')
+const config = require('@config/index')
+const { composePromise } = require('@utils/common')
+const { models: bootstrapModels } = require('@bootstrap/index')
+
+console.log(config.DATABASE.DATABASE_URL)
 
 const getDataSeed = model => {
     const pathSeed = path.resolve(

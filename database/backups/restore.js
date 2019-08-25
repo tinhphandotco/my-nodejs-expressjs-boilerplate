@@ -1,10 +1,10 @@
 'use strict'
 
 require('module-alias/register')
-require('dotenv').config('@root/.env')
+require('dotenv').config('@.env')
 
 const fs = require('fs')
-const { DATABASE, PATH } = require('@root/config/index')
+const { DATABASE, PATH } = require('@config/index')
 const shell = require('shelljs')
 
 const run = async () => {

@@ -1,5 +1,5 @@
-// const config = require('@root/config/index')
+// const config = require('@config/index')
 
 module.exports = (app) => Promise.resolve(
-    require('@root/routes/express')(app)
+    require('@routes/express')(app)
 )
