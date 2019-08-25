@@ -33,7 +33,7 @@ yarn pre:commit
 
 ```
 
-db:migrate
+yarn db:migrate
 
 ```
 
@@ -66,4 +66,7 @@ Create seed data on ```database/seeds```
 ```yarn db:migrate```
 
 
-`Copyright(c) 2019 Tinh Phan <tinh.phan.v@gmail.com>`
+```
+Copyright(c) 2019 Tinh Phan <tinh.phan.v@gmail.com>
+
+```
