@@ -1,0 +1,9 @@
+-   repo: https://github.com/pre-commit/mirrors-eslint
+    rev: ''  # Use the sha / tag you want to point at
+    hooks:
+    -   id: eslint
+        additional_dependencies:
+        -   eslint@4.15.0
+        -   eslint-config-google@0.7.1
+        -   eslint-loader@1.6.1
+        -   babel-eslint@6.1.2
