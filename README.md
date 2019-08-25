@@ -2,20 +2,9 @@
 
 ## Local Development
 
-### Setup
+### Requirements
 
-#### Mongodb
-
-https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-
-#### Nodejs
-
-https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04
-
-#### Yarn
-
-https://yarnpkg.com/en/docs/install#debian-stable
-
+Nodejs, Mongodb, Yarn
 
 ### Step 1: Install Module dependencies
 
@@ -29,8 +18,7 @@ yarn install
 
 ### Step 2: Create .env file
 
-create a new file ```.env``` in root folder
-copy all contents from ```.env.example``` to ```.env``` and change to your local configration
+create a new config file: ```.env``` (copied from ```.env.example```)
 
 
 ### Step 3: Make sure pre-commit is running
@@ -51,22 +39,13 @@ db:migrate
 
 ### Step 5: Run Project
 
-#### Start on local
+#### Run app on local with development mode
 
 ```yarn start```
 
-#### Start production on local
+#### Run app on local with production mode
 
 ```yarn prod:local```
-
-#### Start production on server
-
-```yarn prod:start```
-
-#### Stop production on server
-
-```yarn prod:stop```
-
 
 #### Backup DB
 
@@ -74,9 +53,17 @@ db:migrate
 
 #### Restore DB
 
-Make sure that backup folder is placed in ```database/backups/db-backups```
+Require folder: ```database/backups/db-backups```
 
 Then start restoring DB:
 
 ```yarn db:restore```
 
+#### Migrating DB
+
+Create seed data on ```database/seeds```
+
+```yarn db:migrate```
+
+
+`Copyright(c) 2019 Tinh Phan <tinh.phan.v@gmail.com>`
