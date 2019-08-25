@@ -16,6 +16,8 @@ if [[ "$STAGED_FILES" = "" ]]; then
   exit 0
 fi
 
+$ESLINT "${STAGED_FILES[@]}" --fix
+
 ESLINT_EXIT="$?"
 
 # Re-add files since they may have been fixed
